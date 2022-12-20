@@ -6,7 +6,7 @@
         const login = document.getElementById('login').value;
         const password = document.getElementById('password').value;
 
-        fetch('http://localhost:9989/login', {
+        fetch('http://localhost:9988/login', {
             headers: { 
                 "Content-Type": "application/json; charset=utf-8"
             },

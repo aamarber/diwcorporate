@@ -30,12 +30,21 @@
     const buildProductRow = (product) => {
         return `
             <tr>
-                <td><a href=/product?id=${product.id}>${product.id}</a></td>
+                <td><a href=/product/${product.id}>${product.id}</a></td>
                 <td>${product.name}</td>
             </tr>`;
     };
 
-    fetch('http://localhost:9988/products', {
+    const getProductId = () =>{
+
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+          });
+          // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
+          return params.id;
+    }
+
+    fetch(`http://localhost:9988/products/${getProductId()}`, {
             headers: { 
                 "Content-Type": "application/json; charset=utf-8",
                 "x-access-token": authToken
@@ -48,12 +57,14 @@
                 throw new Error(response);
             }
 
-            const productsTable = buildProductsTable(response);
+            debugger;
 
-            const productsTableContainer = document.createElement('div');
+            // const productsTable = buildProductsTable(response);
 
-            productsTableContainer.innerHTML = productsTable;
+            // const productsTableContainer = document.createElement('div');
 
-            document.body.appendChild(productsTableContainer);
+            // productsTableContainer.innerHTML = productsTable;
+
+            // document.body.appendChild(productsTableContainer);
         })
 })();
