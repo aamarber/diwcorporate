@@ -11,6 +11,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Price</th>
                 </tr>
                 ${buildProductRows(products)}
             </table>`;
@@ -32,6 +33,7 @@
             <tr>
                 <td><a href=/product?id=${product.id}>${product.id}</a></td>
                 <td>${product.name}</td>
+                <td>${product.price}</td>
             </tr>`;
     };
 
@@ -54,6 +56,8 @@
 
             productsTableContainer.innerHTML = productsTable;
 
-            document.body.appendChild(productsTableContainer);
+            const productsContainer = document.getElementById('productsContainer');
+
+            productsContainer.appendChild(productsTableContainer);
         })
 })();

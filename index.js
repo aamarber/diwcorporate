@@ -22,7 +22,7 @@
 
                 sessionStorage.setItem("authtoken", response);
 
-                window.location = '/dashboard';
+                window.location = '/products';
             })
             .catch((error) => {
                 console.error(error);

@@ -5,42 +5,23 @@
         window.location = '/';
     }
 
-    const buildProductsTable = (products) =>{
+    const buildProductDetail = (product) => {
         return `
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                </tr>
-                ${buildProductRows(products)}
-            </table>`;
-    };
-
-    const buildProductRows = (products) => {
-
-        let productRows = '';
-
-        for(let i = 0; i < products.length; i++){
-            productRows += buildProductRow(products[i]);
-        }
-
-        return productRows;
+        <div>
+            <span>${product.name}</span>
+            <span>${product.description}</span>
+            <span>${product.price}</span>
+            <img src="${product.image}">
+        </div>
+        `;
     }
-
-    const buildProductRow = (product) => {
-        return `
-            <tr>
-                <td><a href=/product/${product.id}>${product.id}</a></td>
-                <td>${product.name}</td>
-            </tr>`;
-    };
 
     const getProductId = () =>{
 
         const params = new Proxy(new URLSearchParams(window.location.search), {
             get: (searchParams, prop) => searchParams.get(prop),
           });
-          // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
+          
           return params.id;
     }
 
@@ -57,14 +38,14 @@
                 throw new Error(response);
             }
 
-            debugger;
+            const productDetail = buildProductDetail(response);
 
-            // const productsTable = buildProductsTable(response);
+            const productContainer = document.getElementById('productContainer');
 
-            // const productsTableContainer = document.createElement('div');
+            const div = document.createElement('div');
 
-            // productsTableContainer.innerHTML = productsTable;
+            div.innerHTML = productDetail;
 
-            // document.body.appendChild(productsTableContainer);
+            productContainer.appendChild(div);
         })
 })();
