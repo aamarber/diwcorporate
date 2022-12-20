@@ -1,5 +1,5 @@
 (() => {
-    const authToken = sessionStorage.getItem('authtoken');
+    const authToken = localStorage.getItem('authtoken');
 
     if(!authToken){
         window.location = '/';

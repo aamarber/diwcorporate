@@ -1,8 +1,8 @@
 (() => {
 
-    const loginForm = document.getElementById('loginForm');
-
     const onLogin = (event) => {
+        event.preventDefault();
+
         const login = document.getElementById('login').value;
         const password = document.getElementById('password').value;
 
@@ -18,18 +18,18 @@
         })
             .then(response=>response.json())
             .then((response) => {
-                console.log(response);
-
-                sessionStorage.setItem("authtoken", response);
+                localStorage.setItem("authtoken", response);
 
                 window.location = '/products';
             })
             .catch((error) => {
                 console.error(error);
-            });
 
-        event.preventDefault();
+                document.getElementById('loginErrorMessage').style = 'display: block';
+            });
     }
+
+    const loginForm = document.getElementById('loginForm');
 
     loginForm.addEventListener('submit', onLogin);
 })()

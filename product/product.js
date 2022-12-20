@@ -1,5 +1,7 @@
 (() => {
-    const authToken = sessionStorage.getItem('authtoken');
+    const apiUrl = 'http://localhost:9988';
+
+    const authToken = localStorage.getItem('authtoken');
 
     if(!authToken){
         window.location = '/';
@@ -11,7 +13,7 @@
             <span>${product.name}</span>
             <span>${product.description}</span>
             <span>${product.price}</span>
-            <img src="${product.image}">
+            <img src="${apiUrl}/images/${product.big_image}">
         </div>
         `;
     }
@@ -25,7 +27,7 @@
           return params.id;
     }
 
-    fetch(`http://localhost:9988/products/${getProductId()}`, {
+    fetch(`${apiUrl}/products/${getProductId()}`, {
             headers: { 
                 "Content-Type": "application/json; charset=utf-8",
                 "x-access-token": authToken
