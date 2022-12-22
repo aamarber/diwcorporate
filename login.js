@@ -20,7 +20,7 @@
             .then((response) => {
                 localStorage.setItem("authtoken", response);
 
-                window.location = '/products';
+                window.location = './products';
             })
             .catch((error) => {
                 console.error(error);
