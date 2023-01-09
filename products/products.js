@@ -31,7 +31,7 @@
     const buildProductRow = (product) => {
         return `
             <tr>
-                <td><a href=../product?id=${product.id}>${product.id}</a></td>
+                <td><a href=../product/?id=${product.id}>${product.id}</a></td>
                 <td>${product.name}</td>
                 <td>${product.price}</td>
             </tr>`;
